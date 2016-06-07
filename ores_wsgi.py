@@ -1,4 +1,17 @@
 #!/usr/bin/env python3
+"""
+Run a uwsgi server.
+
+:Usage:
+    ores_wsgi.py -h | --help
+    ores_wsgi.py [--config=<path>]...
+
+:Options:
+    -h --help        Prints this documentation
+    --config=<path>  The path to a yaml config directory
+                     [default: config]
+"""
+import docopt
 import glob
 import logging
 import logging.config
@@ -7,7 +20,12 @@ import yamlconf
 
 from ores.wsgi import server
 
-config = yamlconf.load(*(open(p) for p in sorted(glob.glob("config/*.yaml"))))
+args = docopt.docopt(__doc__)
+yamls = []
+for path in args['--config']:
+    path = "{}/*.yaml".format(path)
+    yamls += [open(p) for p in sorted(glob.glob(path))]
+config = yamlconf.load(*yamls)
 
 with open("logging_config.yaml") as f:
     logging_config = yamlconf.load(f)
