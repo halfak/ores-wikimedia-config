@@ -48,6 +48,7 @@ scoring_systems:
     scoring_contexts:
       - arwiki
       - bnwiki
+      - bswiki
       - cswiki
       - dewiki
       - enwiki
@@ -57,6 +58,7 @@ scoring_systems:
       - eswikiquote
       - eswiki
       - etwiki
+      - euwiki
       - fawiki
       - fiwiki
       - frwiki
@@ -77,6 +79,7 @@ scoring_systems:
       - ruwiki
       - simplewiki
       - sqwiki
+      - srwiki
       - svwiki
       - testwiki
       - tawiki
@@ -122,6 +125,16 @@ scoring_contexts:
       reverted: bnwiki_revert
     precache:
       reverted:
+        "on": ["edit"]
+  bswiki:
+    extractor: bswiki_api
+    scorer_models:
+      damaging: bswiki_damaging
+      goodfaith: bswiki_goodfaith
+    precache:
+      damaging:
+        "on": ["edit"]
+      goodfaith:
         "on": ["edit"]
   cawiki:
     extractor: cawiki_api
@@ -216,6 +229,13 @@ scoring_contexts:
       damaging:
         "on": ["edit"]
       goodfaith:
+        "on": ["edit"]
+  euwiki:
+    extractor: euwiki_api
+    scorer_models:
+      wp10: euwiki_wp10
+    precache:
+      wp10:
         "on": ["edit"]
   fawiki:
     extractor: fawiki_api
@@ -403,6 +423,16 @@ scoring_contexts:
         "on": ["edit"]
       goodfaith:
         "on": ["edit"]
+  srwiki:
+    extractor: srwiki_api
+    scorer_models:
+      damaging: srwiki_damaging
+      goodfaith: srwiki_goodfaith
+    precache:
+      damaging:
+        "on": ["edit"]
+      goodfaith:
+        "on": ["edit"]
   svwiki:
     extractor: svwiki_api
     scorer_models:
@@ -475,6 +505,8 @@ extractors:
     host: https://ar.wikipedia.org
   bnwiki_api:
     host: https://bn.wikipedia.org
+  bswiki_api:
+    host: https://bs.wikipedia.org
   cswiki_api:
     host: https://cs.wikipedia.org
   dewiki_api:
@@ -493,6 +525,8 @@ extractors:
     host: https://es.wikiquote.org
   etwiki_api:
     host: https://et.wikipedia.org
+  euwiki_api:
+    host: https://eu.wikipedia.org
   fawiki_api:
     host: https://fa.wikipedia.org
   fiwiki_api:
@@ -533,6 +567,8 @@ extractors:
     host: https://simple.wikipedia.org
   sqwiki_api:
     host: https://sq.wikipedia.org
+  srwiki_api:
+    host: https://sr.wikipedia.org
   svwiki_api:
     host: https://sv.wikipedia.org
   testwiki_offline:
@@ -558,6 +594,10 @@ scorer_models:
     model_file: submodules/editquality/models/arwiki.goodfaith.gradient_boosting.model
   bnwiki_revert:
     model_file: submodules/editquality/models/bnwiki.reverted.gradient_boosting.model
+  bswiki_damaging:
+    model_file: submodules/editquality/models/bswiki.damaging.rf.model
+  bswiki_goodfaith:
+    model_file: submodules/editquality/models/bswiki.goodfaith.gradient_boosting.model
   cawiki_damaging:
     model_file: submodules/editquality/models/cawiki.damaging.gradient_boosting.model
   cawiki_goodfaith:
@@ -596,6 +636,8 @@ scorer_models:
     model_file: submodules/editquality/models/etwiki.damaging.gradient_boosting.model
   etwiki_goodfaith:
     model_file: submodules/editquality/models/etwiki.goodfaith.gradient_boosting.model
+  euwiki_wp10:
+    model_file: submodules/articlequality/models/euwiki.wp10.gradient_boosting.model
   fawiki_damaging:
     model_file: submodules/editquality/models/fawiki.damaging.gradient_boosting.model
   fawiki_goodfaith:
@@ -664,6 +706,10 @@ scorer_models:
     model_file: submodules/editquality/models/sqwiki.damaging.gradient_boosting.model
   sqwiki_goodfaith:
     model_file: submodules/editquality/models/sqwiki.goodfaith.gradient_boosting.model
+  srwiki_damaging:
+    model_file: submodules/editquality/models/srwiki.damaging.gradient_boosting.model
+  srwiki_goodfaith:
+    model_file: submodules/editquality/models/srwiki.goodfaith.gradient_boosting.model
   svwiki_damaging:
     model_file: submodules/editquality/models/svwiki.damaging.gradient_boosting.model
   svwiki_goodfaith:
