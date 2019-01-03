@@ -21,7 +21,7 @@ all: clean_env deployment_wheels
 
 clean_env:
 	if [ -n "$$VIRTUAL_ENV" ]; then \
-	  pip freeze | xargs pip uninstall -y; \
+	  pip freeze | grep -v pip | xargs pip uninstall -y; \
 	fi
 
 pip_install:
