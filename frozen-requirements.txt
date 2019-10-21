@@ -41,7 +41,7 @@ mwreverts==0.1.5
 mwtypes==0.3.2
 mwxml==0.3.3
 mysqltsv==0.0.7
-nltk==3.0.5
+nltk==3.4.5
 numpy==1.16.4
 para==0.0.5
 pkg-resources==0.0.0
